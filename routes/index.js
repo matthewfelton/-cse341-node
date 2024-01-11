@@ -8,6 +8,6 @@ const lesson1Controller = require('../controllers/lesson1')
 
 // example with using controller two routes
 routes.get('/', lesson1Controller.matthewRoute);
-routes.get('/hannah', lesson1Controller.hannahRoute);
+routes.get('/abby', lesson1Controller.abbyRoute);
 
 module.exports = routes;
