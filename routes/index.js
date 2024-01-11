@@ -1,6 +1,6 @@
 // Web index file for routes
 const routes = require('express').Router();
-const lesson1Controller = required('../controllers/lesson1')
+const lesson1Controller = require('../controllers/lesson1')
 // example with out controller to pull date
 // app.get('/', (req, res) => {
 //    res.send('Matthew Felton');
