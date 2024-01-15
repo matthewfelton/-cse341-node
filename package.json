@@ -9,7 +9,7 @@
     "start-prod": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Matthew Felton",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.3.1",
