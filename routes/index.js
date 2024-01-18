@@ -1,7 +1,8 @@
 // Web index file for routes
 const routes = require('express').Router();
+//connects to lession 1 controller
 const lesson1Controller = require('../controllers/lesson1')
-const userController = require('../controllers/user');
+
 // example with out controller to pull date
 // app.get('/', (req, res) => {
 //    res.send('Matthew Felton');
@@ -10,9 +11,8 @@ const userController = require('../controllers/user');
 // example with using controller two routes
 routes.get('/abby', lesson1Controller.abbyRoute);
 
-routes.get('/', userController.getUser);
-routes.get('/username', userController.getUsername);
+// points route to contact.js
+routes.use('/contacts', require('./contacts'));
 
-
-
+// export module for rest of code to use
 module.exports = routes;

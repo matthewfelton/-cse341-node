@@ -1,0 +1,29 @@
+// rest file to test requests to local and server hosts
+
+// LOCAL HOST 
+
+// localhost Get All Rest Request 
+http://localhost:3000/contacts
+###
+
+// localhost get single record Rest Request Test 1 
+http://localhost:3000/contacts/65a99cc80304e1c64d088ccb
+###
+
+// localhost get single record Rest Request Test 2
+http://localhost:3000/contacts/65a99cc80304e1c64d088ccc
+###
+
+// RENDER SERVER
+
+// server Get All Rest Request 
+https://cse341-mfelton.onrender.com/contacts
+###
+
+// server get single record Rest Request Test 1 
+https://cse341-mfelton.onrender.com/contacts/65a99cc80304e1c64d088ccb 
+###
+
+// server get single record Rest Request Test 2
+https://cse341-mfelton.onrender.com/contacts/65a99cc80304e1c64d088ccc
+###
