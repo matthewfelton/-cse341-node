@@ -11,19 +11,19 @@ http://localhost:3000/contacts/65a99cc80304e1c64d088ccb
 ###
 
 // localhost get single record Rest Request Test 2
-http://localhost:3000/contacts/65a99cc80304e1c64d088ccc
+GET http://localhost:3000/contacts/65a99cc80304e1c64d088ccc
 ###
 
 // RENDER SERVER
 
 // server Get All Rest Request 
-https://cse341-mfelton.onrender.com/contacts
+GET https://cse341-mfelton.onrender.com/contacts
 ###
 
 // server get single record Rest Request Test 1 
-https://cse341-mfelton.onrender.com/contacts/65a99cc80304e1c64d088ccb 
+GET https://cse341-mfelton.onrender.com/contacts/65a99cc80304e1c64d088ccb 
 ###
 
 // server get single record Rest Request Test 2
-https://cse341-mfelton.onrender.com/contacts/65a99cc80304e1c64d088ccc
+GET https://cse341-mfelton.onrender.com/contacts/65a99cc80304e1c64d088ccc
 ###
