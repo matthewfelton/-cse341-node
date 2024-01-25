@@ -11,8 +11,16 @@ const port = process.env.port || 3000;
 // directs paths to routes index
 app.use('/', require('./routes'));
 
+//app
+//    .use(bodyParser.json())
+//    .use((req, res, next) => {
+//        res.setHeader('Access-Control-Allow-Origin', '*');
+//        next();
+//    })
+//   .use('/', require('./routes'));
+
 app
-    .use(bodyParser.json())
+    .use(express.json())
     .use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
@@ -20,7 +28,7 @@ app
     .use('/', require('./routes'));
 
 // Attempts to connect to database throws error or success message
-mongodb.initDb((err, mongodb) => {
+mongodb.initDb((err) => {
     if (err) {
         console.log(err);
     } else {
