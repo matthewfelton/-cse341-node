@@ -40,7 +40,6 @@ const pull_single = async (req, res, next) => {
 
 // creates new contact and sends to db
 const create_contact = async (req, res) => {
-    console.log(req.body); // Add this line for debugging
     const contact = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -48,11 +47,7 @@ const create_contact = async (req, res) => {
         favoriteColor: req.body.favoriteColor,
         birthday: req.body.birthday
     };
-    const response = await mongodb
-        .getDb()
-        .db()
-        .collection('contacts')
-        .insertOne(contact);
+    const response = await mongodb.getDb().db().collection('contacts').insertOne(contact);
     if (response.acknowledged) {
         res.status(201).json(response);
     } else {
@@ -92,7 +87,7 @@ const delete_contact = async (req, res) => {
     // Extracting contact ID from the request parameters
     const userId = new ObjectId(req.params.id);
      // Removing the contact with the specified ID from the 'contacts' collection
-    const response = await mongodb.getDb().db().collection('contacts').remove({ _id: userId }, true);
+    const response = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: userId });
     
     console.log(response);
     // Responding with status 204 if the contact is successfully deleted
