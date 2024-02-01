@@ -1,6 +1,7 @@
 // Web index file for routes
 
-const routes = require('express').Router();
+const express = require('express');
+const router = express.Router();
 
 // connects to lession 1 controller
 // const lesson1Controller = require('../controllers/lesson1')
@@ -11,12 +12,12 @@ const routes = require('express').Router();
 //})
 
 // example with using controller two routes
-//routes.get('/abby', lesson1Controller.abbyRoute);
+// routes.get('/abby', lesson1Controller.abbyRoute);
 
 // swagger route
-routes.use('/', require('./swagger'));
+router.use('/api-doc', require('./swagger'));
 // points route to contact.js
-routes.use('/contacts', require('./contacts'));
+router.use('/contacts', require('./contacts'));
 
 // export module for rest of code to use
-module.exports = routes;
+module.exports = router;

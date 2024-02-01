@@ -5,13 +5,13 @@
     "description": "Contact API",
     "version": "1.0.0"
   },
-  "host": "https://cse341-mfelton.onrender.com",
+  "host": "cse341-mfelton.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
   ],
   "paths": {
-    "/api-docs": {
+    "/api-doc/": {
       "get": {
         "description": "",
         "responses": {
