@@ -1,7 +1,9 @@
 // Web index file for routes
+
 const routes = require('express').Router();
-//connects to lession 1 controller
-const lesson1Controller = require('../controllers/lesson1')
+
+// connects to lession 1 controller
+// const lesson1Controller = require('../controllers/lesson1')
 
 // example with out controller to pull date
 // app.get('/', (req, res) => {
@@ -9,8 +11,10 @@ const lesson1Controller = require('../controllers/lesson1')
 //})
 
 // example with using controller two routes
-routes.get('/abby', lesson1Controller.abbyRoute);
+//routes.get('/abby', lesson1Controller.abbyRoute);
 
+// swagger route
+routes.use('/', require('./swagger'));
 // points route to contact.js
 routes.use('/contacts', require('./contacts'));
 

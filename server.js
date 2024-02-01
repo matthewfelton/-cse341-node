@@ -3,6 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+// Adds swagger
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 // points variable to path of db connection information 
 const mongodb = require('./db/connection');
 
@@ -17,8 +21,8 @@ app
     })
     .use('/', require('./routes'));
 
-// Use your routes
-app.use('/', require('./routes'));
+// Use your routes already above redundant code
+//app.use('/', require('./routes'));
 
 
 // Attempts to connect to database throws error or success message
