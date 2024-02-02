@@ -70,6 +70,7 @@ const update_contact = async (req, res) => {
 
       // Creating a contact object from the request body
     const contact = {
+        _id: userId, // Explicitly seting _id due to being lost in contact array
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
