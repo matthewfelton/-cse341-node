@@ -1,26 +1,27 @@
 // express web sever main js file
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
 
 // points variable to path of db connection information 
 const mongodb = require('./db/connection');
 
+
 // attempts to pull port or default to 8080
 const port = process.env.port || 8080;
 
 app
+    .use(cors({
+        origin: '*', // Replace with your frontend domain or '*' for any origin
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Add DELETE and PUT to the allowed methods
+        credentials: true, // Include cookies or authorization headers
+    }))
     .use(bodyParser.json())
-    .use((req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader(
-            'Access-control-Allow-Headers',
-            'Orignin, X-Requested-With, Content-Type, Accept, Z-Key'
-        );
-        res.setHeader('Content-Type', 'application/json');
-        res.setHeader('Access-Control-Allow-Method', 'GET, POST, PUT, DELETE, OPTIONS')
-        next();
-    })
+    // .use((req, res, next) => {
+    //     res.setHeader('Access-Control-Allow-Origin', '*');
+    //     next();
+    // })
     .use('/', require('./routes'));
 
 // Use your routes already above redundant code
