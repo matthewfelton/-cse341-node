@@ -14,10 +14,11 @@ const port = process.env.port || 8080;
 app
     .use(cors({
         origin: '*', // Replace with your frontend domain or '*' for any origin
-        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Add DELETE and PUT to the allowed methods
+        methods: 'GET, HEAD, PUT, PATCH, POST, DELETE', // Add DELETE and PUT to the allowed methods
         credentials: true, // Include cookies or authorization headers
     }))
     .use(bodyParser.json())
+    .use(express.urlencoded({ extended: true }))
     // .use((req, res, next) => {
     //     res.setHeader('Access-Control-Allow-Origin', '*');
     //     next();
