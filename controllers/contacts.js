@@ -84,21 +84,34 @@ const update_contact = async (req, res) => {
 
 // delete existing contact
 const delete_contact = async (req, res) => {
-    // Extracting contact ID from the request parameters
-    const userId = new ObjectId(req.params.id);
-     // Removing the contact with the specified ID from the 'contacts' collection
+    try {
+      // Extracting contact ID from the request parameters
+    const contactId = req.params.id;
+      // Validate that contactId is a valid ObjectId before attempting to create ObjectId
+    if (!ObjectId.isValid(contactId)) {
+        return res.status(400).json({ error: 'Invalid contact ID format' });
+    }
+
+    const userId = new ObjectId(contactId);
+
+      // Removing the contact with the specified ID from the 'contacts' collection
     const response = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: userId });
-    
-    console.log(response);
-    // Responding with status 204 if the contact is successfully deleted
-    if (response.deletedCount > 0) {
-        res.status(204).send();
-    } else {
-        // Responding with status 500 and an error message if there's an issue
-        res.status(500).json(response.error || 'Some error occurred while deleting the contact.');
+
+        console.log(response);
+
+        // Responding with status 204 if the contact is successfully deleted
+        if (response.deletedCount > 0) {
+            res.status(204).send();
+        } else {
+            // Responding with status 404 if the contact does not exist
+            res.status(404).json({ error: 'Contact not found' });
+        }
+    } catch (error) {
+      // Responding with status 500 and an error message if there's an issue
+        console.error(error);
+        res.status(500).json({ error: 'Some error occurred while deleting the contact.' });
     }
 };
-
 
 
 
