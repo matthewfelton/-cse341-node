@@ -57,9 +57,18 @@ const create_contact = async (req, res) => {
 
 // update existing db
 const update_contact = async (req, res) => {
-    // Extracting contact ID from the request parameters
-    const userId = new ObjectId(req.params.id);
-    // Creating a contact object from the request body
+    try {
+      // Extracting contact ID from the request parameters
+    const contactId = req.params.id;
+
+      // Validate that contactId is a valid ObjectId before attempting to create ObjectId
+    if (!ObjectId.isValid(contactId)) {
+        return res.status(400).json({ error: 'Invalid contact ID format' });
+    }
+
+    const userId = new ObjectId(contactId);
+
+      // Creating a contact object from the request body
     const contact = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -67,21 +76,24 @@ const update_contact = async (req, res) => {
         favoriteColor: req.body.favoriteColor,
         birthday: req.body.birthday
     };
-    const response = await mongodb
-        .getDb()
-        .db()
-        .collection('contacts')
-        .replaceOne({ _id: userId }, contact);
-    console.log(response);
+      // Updating the contact with the specified ID in the 'contacts' collection
+    const response = await mongodb.getDb().db().collection('contacts').replaceOne({ _id: userId }, contact);
+    console.log('Update Response:', response);
+      // Responding with status 204 if the contact is successfully updated
     if (response.modifiedCount > 0) {
-        // Responding with status 204 if the contact is successfully updated
-        res.status(204).send();
-    } else {
-        // Responding with status 500 and an error message if there's an issue
-        res.status(500).json(response.error || 'Some error occurred while updating the contact.');
+            res.status(204).send();
+        } else {
+        // Responding with status 404 if the contact does not exist
+            res.status(404).json({ error: 'Contact not found' });
+        }
+    } catch (error) {
+      // Log the error for troubleshooting
+        console.error('Error in update_contact:', error);
+
+      // Responding with status 500 and an error message if there's an issue
+        res.status(500).json({ error: 'Some error occurred while updating the contact.' });
     }
 };
-
 // delete existing contact
 const delete_contact = async (req, res) => {
     try {
