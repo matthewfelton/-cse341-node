@@ -77,7 +77,7 @@ const update_contact = async (req, res) => {
         birthday: req.body.birthday
     };
       // Updating the contact with the specified ID in the 'contacts' collection
-    const response = await mongodb.getDb().db().collection('contacts').replaceOne({ _id: userId }, contact);
+    const response = await mongodb.getDb().db().collection('contacts').updateOne({ _id: userId }, contact);
     console.log('Update Response:', response);
       // Responding with status 204 if the contact is successfully updated
     if (response.modifiedCount > 0) {
